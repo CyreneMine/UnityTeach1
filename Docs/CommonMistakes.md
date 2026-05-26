@@ -28,4 +28,7 @@
 
 ## 其他常见问题
 
-- 暂无记录。
+- 2026-05-26：`Lesson11` 调试时，之前用于测试 API 的空 GameObject 上仍然挂着 `Lesson11` 脚本，导致场景中存在两个脚本实例。正确挂在 `Tank` 上的实例可以找到子物体 `Tank_Head`，但空对象实例找不到 `Tank_Head`，于是 `Update()` 中访问 `tankHead.Rotate(...)` 时出现 `NullReferenceException`。
+  - 问题类型：脚本挂载对象错误 / 多实例脚本未关闭。
+  - 排查方法：在 Hierarchy 搜索 `t:Lesson11`，确认场景里有几个对象挂了同一个脚本；日志中使用 `Debug.Log($"脚本挂在:{gameObject.name}", this);`，方便点击 Console 直接定位对象。
+  - 经验总结：Unity 中每一个激活的、挂有脚本的 GameObject 都会独立执行 `Awake`、`Start`、`Update` 等生命周期，不会只执行当前“想调试”的那个对象。

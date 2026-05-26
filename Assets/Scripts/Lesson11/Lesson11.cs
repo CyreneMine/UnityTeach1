@@ -18,12 +18,12 @@ public class Lesson11 : MonoBehaviour
     private void Awake()
     {
         playerController = new  PlayerController();
-        
     }
 
     private void Start()
     {
         tankHead = transform.Find("Tank_Head");
+        print($"目前tankHead为{tankHead}");
     }
 
     private void OnEnable()
@@ -49,7 +49,7 @@ public class Lesson11 : MonoBehaviour
     {
         
         transform.Translate(new Vector3(moveInput.x,0,moveInput.y) * (Time.deltaTime * moveSpeed));
-        tankHead.Rotate(Vector3.up*lookInput*sensitivity);
+        tankHead.Rotate(Vector3.up*lookInput.x*sensitivity*Time.deltaTime);
     }
 
     private void OnMove(InputAction.CallbackContext ctx)
