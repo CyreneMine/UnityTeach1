@@ -143,11 +143,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91877084}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55c6694a41135f246abeaa732aac4769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lesson11
+  rotateSpeed: 20
+  moveSpeed: 5
+  sensitivity: 15
+  tankHead: {fileID: 0}
 --- !u!4 &91877086
 Transform:
   m_ObjectHideFlags: 0
@@ -352,6 +356,143 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &971074027
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7035548372151025313, guid: 9c6ac777d8f21374496e8677b480b9c6, type: 3}
+      propertyPath: m_Name
+      value: Tank
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035548372151025314, guid: 9c6ac777d8f21374496e8677b480b9c6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035548372151025314, guid: 9c6ac777d8f21374496e8677b480b9c6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035548372151025314, guid: 9c6ac777d8f21374496e8677b480b9c6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035548372151025314, guid: 9c6ac777d8f21374496e8677b480b9c6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035548372151025314, guid: 9c6ac777d8f21374496e8677b480b9c6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035548372151025314, guid: 9c6ac777d8f21374496e8677b480b9c6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035548372151025314, guid: 9c6ac777d8f21374496e8677b480b9c6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035548372151025314, guid: 9c6ac777d8f21374496e8677b480b9c6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035548372151025314, guid: 9c6ac777d8f21374496e8677b480b9c6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035548372151025314, guid: 9c6ac777d8f21374496e8677b480b9c6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7035548372151025313, guid: 9c6ac777d8f21374496e8677b480b9c6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2122706791}
+    - targetCorrespondingSourceObject: {fileID: 7035548372151025313, guid: 9c6ac777d8f21374496e8677b480b9c6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2122706790}
+    - targetCorrespondingSourceObject: {fileID: 7035548372151025313, guid: 9c6ac777d8f21374496e8677b480b9c6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2122706793}
+  m_SourcePrefab: {fileID: 100100000, guid: 9c6ac777d8f21374496e8677b480b9c6, type: 3}
+--- !u!4 &1174651314 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7035548370717662119, guid: 9c6ac777d8f21374496e8677b480b9c6, type: 3}
+  m_PrefabInstance: {fileID: 971074027}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2122706789 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7035548372151025313, guid: 9c6ac777d8f21374496e8677b480b9c6, type: 3}
+  m_PrefabInstance: {fileID: 971074027}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2122706790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122706789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: d25cb2128bbd4c94683ace400da8e92c, type: 3}
+  m_NotificationBehavior: 3
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 757371675}
+--- !u!114 &2122706791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122706789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55c6694a41135f246abeaa732aac4769, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Lesson11
+  rotateSpeed: 20
+  moveSpeed: 20
+  sensitivity: 15
+  tankHead: {fileID: 1174651314}
+--- !u!114 &2122706793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122706789}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f7745776d9dcc14197cbb0ed08414fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Lesson11OldInputSystem
+  rotateSpeed: 20
+  moveSpeed: 20
+  sensitivity: 20
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -359,3 +500,4 @@ SceneRoots:
   - {fileID: 757371676}
   - {fileID: 409511384}
   - {fileID: 91877086}
+  - {fileID: 971074027}
