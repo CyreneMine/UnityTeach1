@@ -2,8 +2,8 @@
 
 ## 当前学习状态
 
-- 当前完成：Lesson16 物理系统碰撞检测练习
-- 下一阶段：继续学习 Lesson17 或下一 P 内容
+- 当前完成：Lesson17 物体位移方式理论
+- 下一阶段：继续学习 Lesson18 或下一 P 内容
 - 学习来源：唐老狮 Unity 教程练习
 - Unity 版本：`6000.3.10f1`
 - Input System：`1.18.0`
@@ -18,6 +18,7 @@
 - Lesson14：`WorldToScreenPoint`、`ScreenToWorldPoint`、鼠标点击位置创建 Cube。
 - Lesson15：点光源模拟蜡烛摆动与亮度变化，方向光旋转模拟昼夜变化。
 - Lesson16：鼠标左键发射子弹、Trigger 碰撞检测、子弹触地/碰敌销毁、敌人被击中 3 次销毁。
+- Lesson17：总结物体位移的四种方式：直接改 Position、`Translate`、`Rigidbody.AddForce/AddRelativeForce`、直接改 Rigidbody 速度。
 
 ## 当前重点概念
 
@@ -33,6 +34,8 @@
 - `Directional Light` 的 Transform 旋转会改变全局光照方向，可用于理解昼夜变化的基础原理。
 - Trigger 碰撞需要至少一方带 Rigidbody，并且对象 Tag 要和代码判断一致。
 - 修改 Tag 需要提交 `ProjectSettings/TagManager.asset`。
+- Transform 位移和 Rigidbody 物理位移属于不同思路，是否参与物理系统是重要区别。
+- `AddForce` 表示持续施力或冲量，直接改速度表示立刻覆盖当前运动速度。
 
 ## 当前常见风险
 
@@ -58,4 +61,4 @@
 
 ## 最近提交
 
-- `study: 完成唐老狮教程 - Lesson16 物理系统碰撞检测练习`
+- `study: 完成唐老狮教程 - Lesson17 物体位移方式理论`

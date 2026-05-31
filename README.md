@@ -2,7 +2,7 @@
 
 ## 项目简介
 
-这是一个 Unity 学习练习项目，用于跟随唐老狮 Unity 教程完成基础知识、脚本、场景、Prefab、输入系统、Transform 控制、Camera 组件、坐标转换、光源组件、物理碰撞检测等内容的练习。
+这是一个 Unity 学习练习项目，用于跟随唐老狮 Unity 教程完成基础知识、脚本、场景、Prefab、输入系统、Transform 控制、Camera 组件、坐标转换、光源组件、物理碰撞检测、物体位移方式等内容的练习。
 
 本项目不只是保存代码，也会长期记录学习过程、常见错误、教程旧写法与当前 Unity 推荐写法之间的差异。
 
@@ -14,9 +14,9 @@
 
 ## 当前学习阶段
 
-当前已完成到 `Lesson16 / 物理系统碰撞检测练习`。
+当前已完成到 `Lesson17 / 物体位移方式理论`。
 
-本节重点练习了通过鼠标左键发射子弹、使用 Trigger 检测子弹与地面/敌人的碰撞，并在命中后销毁子弹或敌人。
+本节重点总结了直接修改 `Position`、使用 `Translate`、通过 `Rigidbody.AddForce/AddRelativeForce` 施力、直接修改 Rigidbody 速度这几种位移方式。
 
 当前项目环境：
 
@@ -47,6 +47,7 @@
 - `Lesson15` 方向光旋转模拟昼夜变化
 - `Lesson16` 鼠标左键发射子弹
 - `Lesson16` Trigger 碰撞检测、子弹销毁和敌人血量销毁
+- `Lesson17` 物体位移方式理论总结
 - Git 仓库初始化和 GitHub 推送
 - Unity 专用 `.gitignore`
 - 项目级助手规则 `AGENTS.md`
@@ -95,6 +96,8 @@ README.md              项目说明
 - 重命名 `[SerializeField]` 字段后，要检查 Inspector 引用是否重新保存。
 - Trigger 碰撞检测需要同时关注 Collider、Rigidbody、Is Trigger 和 Tag。
 - 修改 Tag 后需要提交 `ProjectSettings/TagManager.asset`。
+- Transform 移动和 Rigidbody 物理移动的核心区别是是否交给物理系统处理。
+- `AddForce` 更偏物理受力，直接改速度更偏明确控制运动结果。
 
 ## 后续计划
 

@@ -12,10 +12,10 @@
 
 ## 当前进度
 
-- 当前完成：Lesson16 物理系统碰撞检测练习
-- 下一阶段：继续学习 Lesson17 或下一 P 内容
+- 当前完成：Lesson17 物体位移方式理论
+- 下一阶段：继续学习 Lesson18 或下一 P 内容
 - 当前项目环境：Unity `6000.3.10f1`，Input System `1.18.0`
-- 最近提交：`study: 完成唐老狮教程 - Lesson16 物理系统碰撞检测练习`
+- 最近提交：`study: 完成唐老狮教程 - Lesson17 物体位移方式理论`
 
 ## 归档索引
 
@@ -25,9 +25,47 @@
 - [Lesson14 - 坐标转换练习](Archive/Lesson14-CoordinateConversion.md)
 - [Lesson15 - 光源组件练习](Archive/Lesson15-Light.md)
 - [Lesson16 - 物理系统碰撞检测练习](Archive/Lesson16-PhysicsCollision.md)
+- [Lesson17 - 物体位移方式理论](Archive/Lesson17-MovementWays.md)
 - [文档结构调整记录](Archive/DocsReorganization.md)
 
 ## 最近变更
+
+### 2026-05-31 Lesson17 物体位移方式理论
+
+#### 教程/小节名称
+
+唐老狮 Unity 教程 - Lesson17 物体位移方式理论
+
+#### 本节目标
+
+总结 Unity 中让一个物体产生位移的常见方式，理解 Transform 移动和 Rigidbody 物理移动的区别。
+
+#### 已完成内容
+
+- 总结直接修改 `transform.position` 的移动方式。
+- 总结使用 `transform.Translate()` 的移动方式。
+- 总结通过 `Rigidbody.AddForce()` 和 `Rigidbody.AddRelativeForce()` 施加力的移动方式。
+- 总结直接修改 `Rigidbody` 速度属性的移动方式。
+- 新建 `Assets/Scripts/Lesson17/` 目录，保留本节理论小节的空场景和空脚本占位。
+
+#### 做得好的地方
+
+- 能把 Lesson16 中“子弹 Transform 移动”和后续 Rigidbody 运动内容衔接起来理解。
+- 能区分教程当前阶段的写法和后续正式物理运动写法，不急着提前改掉练习代码。
+- 这节没有强行写练习代码，符合题目只有理论总结的特点。
+
+#### 当前问题
+
+- 当前还只是理论理解，后续需要通过实际 Rigidbody 示例观察不同移动方式的手感和物理表现。
+
+#### 推荐改进方向
+
+- 后续遇到角色、子弹、可推动物体时，先判断对象是否需要参与物理系统，再决定用 Transform 还是 Rigidbody。
+- 学到 Rigidbody 运动后，可以回看 Lesson16 子弹移动，对比 `Translate`、`velocity`、`AddForce` 的区别。
+
+#### 下一节建议
+
+继续学习物理系统后续内容时，重点观察不同 ForceMode、速度赋值和 FixedUpdate 的使用场景。
 
 ### 2026-05-31 Lesson16 物理系统碰撞检测练习
 

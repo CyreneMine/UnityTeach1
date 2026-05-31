@@ -78,6 +78,18 @@
 - Unity 更推荐 `CompareTag()` 做 Tag 比较；当前小练习中 `tag == "xxx"` 也能正常工作。
 - 子弹带 Rigidbody 但使用 Transform 移动可以完成当前练习；后续学习 Rigidbody 运动时再切换到更物理的写法。
 
+### 物体位移方式
+
+归档文件：[Lesson17 - 物体位移方式理论](Archive/Lesson17-MovementWays.md)
+
+重点：
+
+- 直接修改 `transform.position` 是瞬移式的位置赋值，不经过物理系统求解。
+- `transform.Translate()` 是基于 Transform 的位移 API，本质仍是直接改变 Transform。
+- `Rigidbody.AddForce()` / `AddRelativeForce()` 通过施加力让物体运动，更符合物理模拟思路。
+- 直接修改 Rigidbody 速度会立刻覆盖当前速度，适合需要明确控制速度的场景。
+- 需要参与碰撞、受力、重力等物理表现时，优先考虑 Rigidbody 相关移动方式。
+
 ## 后续记录规则
 
 - 每完成一个新 Lesson，在 `Docs/Archive/` 中新增对应文件。
