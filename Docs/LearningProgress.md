@@ -12,10 +12,10 @@
 
 ## 当前进度
 
-- 当前完成：Lesson21 音频基础理论
-- 下一阶段：暂时搁置本项目，先学习 UGUI 和 PlayerPrefs
+- 当前完成：Lesson21 音频基础理论；已补完 PlayerPrefs、UGUI、Json 持久化三部分前置内容
+- 下一阶段：回到本项目，开始制作唐老狮入门小项目
 - 当前项目环境：Unity `6000.3.10f1`，Input System `1.18.0`
-- 最近提交：`study: 更新唐老狮教程练习记录 - Audio理论与阶段暂停`
+- 最近提交：`study: 更新 Unity 教程练习记录`
 
 ## 归档索引
 
@@ -27,10 +27,47 @@
 - [Lesson16 - 物理系统碰撞检测练习](Archive/Lesson16-PhysicsCollision.md)
 - [Lesson17 - 物体位移方式理论](Archive/Lesson17-MovementWays.md)
 - [Lesson18-21 - Audio 基础理论](Archive/Lesson18-21-AudioBasics.md)
-- [阶段暂停 - 转学 UGUI 与 PlayerPrefs](Archive/Pause-UGUI-PlayerPrefs.md)
+- [阶段补课 - UGUI、PlayerPrefs 与 Json 持久化](Archive/Pause-UGUI-PlayerPrefs.md)
 - [文档结构调整记录](Archive/DocsReorganization.md)
 
 ## 最近变更
+
+### 2026-06-29 阶段补课完成，回到小项目制作
+
+#### 教程/小节名称
+
+唐老狮 Unity 教程 - PlayerPrefs、UGUI、Json 持久化前置内容
+
+#### 本节目标
+
+在正式制作入门小项目前，补齐界面制作、简单本地设置保存、结构化本地数据持久化三部分基础能力。
+
+#### 已完成内容
+
+- 完成 PlayerPrefs 相关内容，理解简单键值数据的保存、读取和删除。
+- 完成 UGUI 相关内容，具备使用 Canvas、RectTransform、基础 UI 组件和事件绑定制作项目界面的基础。
+- 完成 Json 持久化相关内容，理解将对象数据序列化为 Json、保存到本地文件、再读取恢复的基本流程。
+- 学习路线从“阶段暂停补课”切回“开始制作唐老狮入门小项目”。
+
+#### 做得好的地方
+
+- 没有直接照搬旧式 `OnGUI` 作为项目主力界面，而是先补齐更适合当前 Unity 项目的 UGUI。
+- 在做小项目前先学习 PlayerPrefs 和 Json 持久化，后续做设置、进度、存档时会更顺。
+- 能把“简单设置”和“结构化存档”区分开：PlayerPrefs 负责轻量键值，Json 更适合复杂数据。
+
+#### 当前问题
+
+- PlayerPrefs、UGUI、Json 目前还没有和本项目小项目整合，后续需要在菜单、设置、游戏数据保存中落地。
+
+#### 推荐改进方向
+
+- 小项目开始后，优先规划菜单、设置界面、游戏主界面和结算界面。
+- 音量、画质、简单开关等设置优先考虑 PlayerPrefs。
+- 关卡进度、角色数据、背包、分数记录等结构化数据优先考虑 Json 文件保存。
+
+#### 下一节建议
+
+回到唐老狮入门小项目制作阶段，先搭建项目基础流程，再逐步接入 UGUI、音频、输入、物理和数据保存。
 
 ### 2026-06-01 Lesson18-21 Audio 基础理论与阶段暂停
 

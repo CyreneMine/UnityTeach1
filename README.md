@@ -2,7 +2,7 @@
 
 ## 项目简介
 
-这是一个 Unity 学习练习项目，用于跟随唐老狮 Unity 教程完成基础知识、脚本、场景、Prefab、输入系统、Transform 控制、Camera 组件、坐标转换、光源组件、物理碰撞检测、物体位移方式、音频基础等内容的练习。
+这是一个 Unity 学习练习项目，用于跟随唐老狮 Unity 教程完成基础知识、脚本、场景、Prefab、输入系统、Transform 控制、Camera 组件、坐标转换、光源组件、物理碰撞检测、物体位移方式、音频基础、UGUI、本地数据持久化等内容的练习。
 
 本项目不只是保存代码，也会长期记录学习过程、常见错误、教程旧写法与当前 Unity 推荐写法之间的差异。
 
@@ -14,11 +14,11 @@
 
 ## 当前学习阶段
 
-当前已完成到 `Lesson21 / Audio 基础理论`。
+当前已完成到 `Lesson21 / Audio 基础理论`，并已补完 `PlayerPrefs`、`UGUI`、`Json 持久化` 三部分前置内容。
 
 最近几节主要是理论内容：物体位移方式、音频导入参数、`AudioSource` / `AudioListener` 组件、`AudioSource` API、麦克风录制与 `AudioClip.GetData()`。
 
-当前项目计划暂时搁置一段时间。后续先学习 UGUI 和 PlayerPrefs，再回来继续制作唐老狮入门教程项目；旧式 `OnGUI` 只作为了解内容，后续项目优先使用 UGUI。
+当前项目已经从“阶段暂停补课”切回“准备制作唐老狮入门小项目”。旧式 `OnGUI` 只作为了解内容，后续项目优先使用 UGUI。
 
 当前项目环境：
 
@@ -54,6 +54,9 @@
 - `Lesson19` AudioSource 和 AudioListener 组件参数
 - `Lesson20` AudioSource 常用 API
 - `Lesson21` 麦克风录制、播放录音和 AudioClip 采样数据读取
+- PlayerPrefs 简单本地数据保存
+- UGUI 基础界面制作
+- Json 持久化结构化本地数据保存
 - Git 仓库初始化和 GitHub 推送
 - Unity 专用 `.gitignore`
 - 项目级助手规则 `AGENTS.md`
@@ -107,6 +110,7 @@ README.md              项目说明
 - 音频学习需要同时关注资源导入、场景播放组件、代码控制和录音数据。
 - `OnGUI` 已偏旧，后续入门项目优先使用 UGUI。
 - PlayerPrefs 适合保存音量、最高分、设置项和简单进度。
+- Json 持久化适合保存结构化数据，例如关卡进度、角色数据、背包、配置和本地存档。
 
 ## 后续计划
 
@@ -119,7 +123,9 @@ README.md              项目说明
 - 继续保持新旧输入系统对照学习。
 - 后续学习射线检测时，对照理解 `ScreenToWorldPoint` 和 `ScreenPointToRay`。
 - 后续学习 Rigidbody 运动时，对照理解 Transform 直接移动和 Rigidbody 物理移动的区别。
-- 当前项目暂停，先学习 UGUI 和 PlayerPrefs。
-- 学完 UGUI 和 PlayerPrefs 后，回来继续制作唐老狮入门教程项目。
-- 回来后优先用 UGUI 做菜单、设置面板、游戏界面和结算界面。
+- PlayerPrefs、UGUI、Json 持久化前置内容已完成。
+- 接下来继续制作唐老狮入门教程小项目。
+- 优先用 UGUI 做菜单、设置面板、游戏界面和结算界面。
+- 使用 PlayerPrefs 保存音量、简单设置等轻量数据。
+- 使用 Json 保存结构化游戏数据或更完整的本地存档。
 - 在合适的小节节点创建 Git commit，并在明确要求时 push 到 GitHub。

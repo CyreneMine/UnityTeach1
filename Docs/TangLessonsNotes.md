@@ -104,14 +104,15 @@
 
 ### GUI / UGUI / PlayerPrefs 路线选择
 
-归档文件：[阶段暂停 - 转学 UGUI 与 PlayerPrefs](Archive/Pause-UGUI-PlayerPrefs.md)
+归档文件：[阶段补课 - UGUI、PlayerPrefs 与 Json 持久化](Archive/Pause-UGUI-PlayerPrefs.md)
 
 重点：
 
 - `OnGUI` 属于较老的即时模式 GUI，当前阶段只需要能看懂教程写法和历史用途。
-- 后续入门项目优先使用 UGUI 制作菜单、设置面板和游戏界面。
+- 后续入门项目优先使用 UGUI 制作菜单、设置面板、游戏界面和结算界面。
 - PlayerPrefs 适合保存音量、最高分、简单设置和轻量进度。
-- 本项目暂时暂停，等学完 UGUI 和 PlayerPrefs 后回来继续完成入门项目。
+- Json 持久化适合保存结构化数据，例如关卡进度、角色数据、背包、配置和更复杂的本地存档。
+- PlayerPrefs、UGUI、Json 持久化三部分前置内容已完成，本项目可以回到入门小项目制作阶段。
 
 ## 后续记录规则
 
