@@ -18,7 +18,7 @@
 
 最近几节主要是理论内容：物体位移方式、音频导入参数、`AudioSource` / `AudioListener` 组件、`AudioSource` API、麦克风录制与 `AudioClip.GetData()`。
 
-当前项目已经从“阶段暂停补课”切回“准备制作唐老狮入门小项目”。旧式 `OnGUI` 只作为了解内容，后续项目优先使用 UGUI。
+当前项目已经从“阶段暂停补课”切回“制作唐老狮入门小项目”。实践小项目视频范围已记录为 `P67-P99`，目前已完成到 `P77 / 音效数据逻辑`，下一步进入 `P78 / 排行榜界面`。旧式 `OnGUI` 只作为了解内容，后续项目优先使用 UGUI。
 
 当前项目环境：
 
@@ -57,6 +57,7 @@
 - PlayerPrefs 简单本地数据保存
 - UGUI 基础界面制作
 - Json 持久化结构化本地数据保存
+- 实践小项目 P67-P77：小项目准备内容、开始界面、设置界面、音效数据逻辑
 - Git 仓库初始化和 GitHub 推送
 - Unity 专用 `.gitignore`
 - 项目级助手规则 `AGENTS.md`
@@ -86,6 +87,7 @@ README.md              项目说明
 - [常见错误](Docs/CommonMistakes.md)
 - [唐老狮教程笔记](Docs/TangLessonsNotes.md)
 - [按 Lesson 归档](Docs/Archive/)
+- [实践小项目 P67-P99 分 P 清单](Docs/Archive/SmallProject-P67-P99.md)
 - [GPT 辅助学习记录](Gpt对话协助/)
 
 ## 当前重点记录
@@ -111,6 +113,7 @@ README.md              项目说明
 - `OnGUI` 已偏旧，后续入门项目优先使用 UGUI。
 - PlayerPrefs 适合保存音量、最高分、设置项和简单进度。
 - Json 持久化适合保存结构化数据，例如关卡进度、角色数据、背包、配置和本地存档。
+- 自定义 PlayerPrefs 数据管理器读取不存在的 key 时，要注意默认返回值可能覆盖 C# 字段初始化值。
 
 ## 后续计划
 
@@ -125,6 +128,7 @@ README.md              项目说明
 - 后续学习 Rigidbody 运动时，对照理解 Transform 直接移动和 Rigidbody 物理移动的区别。
 - PlayerPrefs、UGUI、Json 持久化前置内容已完成。
 - 接下来继续制作唐老狮入门教程小项目。
+- 当前小项目视频定位：P77 已完成；下一步 P78「排行榜界面」。
 - 优先用 UGUI 做菜单、设置面板、游戏界面和结算界面。
 - 使用 PlayerPrefs 保存音量、简单设置等轻量数据。
 - 使用 Json 保存结构化游戏数据或更完整的本地存档。

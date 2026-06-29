@@ -34,6 +34,13 @@
 
 ## 其他常见问题
 
+- 2026-06-29：实践小项目 P77「音效数据逻辑」中，设置窗口关闭时调用 `GameDataMgr.Instance.SaveData()` 保存数据，但重新运行后设置看起来没有生效。
+  - 问题类型：PlayerPrefs 默认值覆盖 / 首次初始化标记理解错误 / 反射加载覆盖字段默认值。
+  - 现象：`MusicData` 中曾经写过 `public bool isFirst = true;`，但通过 `PlayerPrefsDataMgr.LoadData(typeof(MusicData), "Music")` 加载后，`isFirst` 仍然变成 `false`，导致初始化判断失效。
+  - 原因：`LoadData()` 先通过 `Activator.CreateInstance(type)` 创建对象，此时字段默认值确实会生效；但随后它遍历字段并执行 `fieldInfo.SetValue(data, LoadValue(...))`。当 PlayerPrefs 中还没有对应 bool key 时，`PlayerPrefs.GetInt(keyName)` 默认返回 `0`，于是 `LoadValue()` 返回 `false`，又把对象里原本的 `isFirst = true` 覆盖掉。
+  - 经验总结：最终赋给 `musicData` 的不是单纯 C# 默认初始化后的对象，而是 `PlayerPrefsDataMgr` 按自己读取规则处理后的对象。字段默认值会先执行，但如果加载逻辑没有区分“key 不存在”和“值就是 false / 0”，就会被默认读取结果覆盖。
+  - 推荐做法：使用 `notFirst` 这类标记时，第一次初始化后要把它设为 `true` 并保存；更稳的方案是让数据管理器使用 `PlayerPrefs.HasKey()` 判断是否已有存档，或在加载失败/没有 key 时保留对象的字段默认值。
+
 - 2026-05-26：`Lesson11` 调试时，之前用于测试 API 的空 GameObject 上仍然挂着 `Lesson11` 脚本，导致场景中存在两个脚本实例。正确挂在 `Tank` 上的实例可以找到子物体 `Tank_Head`，但空对象实例找不到 `Tank_Head`，于是 `Update()` 中访问 `tankHead.Rotate(...)` 时出现 `NullReferenceException`。
   - 问题类型：脚本挂载对象错误 / 多实例脚本未关闭。
   - 排查方法：在 Hierarchy 搜索 `t:Lesson11`，确认场景里有几个对象挂了同一个脚本；日志中使用 `Debug.Log($"脚本挂在:{gameObject.name}", this);`，方便点击 Console 直接定位对象。
