@@ -1,0 +1,35 @@
+# GitHub Linguist language statistics
+#
+# This project is a Unity learning project. Most files under ArtRes, TextMesh Pro,
+# Scenes, ProjectSettings and Packages are assets/configuration rather than code
+# written for the lesson. Exclude them from GitHub's language bar so the repo
+# statistics mainly reflect our learning scripts.
+
+# Imported Unity assets / third-party assets
+Assets/ArtRes/** linguist-vendored
+"Assets/TextMesh Pro/**" linguist-vendored
+
+# Unity scenes and generated/imported asset metadata
+Assets/Scenes/** linguist-vendored
+*.unity linguist-vendored
+*.prefab linguist-vendored
+*.mat linguist-vendored
+*.asset linguist-vendored
+*.controller linguist-vendored
+*.meta linguist-generated
+
+# Shader and render-pipeline support files from imported packages/assets
+*.shader linguist-vendored
+*.shadergraph linguist-vendored
+*.hlsl linguist-vendored
+*.cginc linguist-vendored
+
+# Unity project/package configuration
+Packages/** linguist-vendored
+ProjectSettings/** linguist-vendored
+
+# Learning notes and assistant/project documentation
+Docs/** linguist-documentation
+Gpt对话协助/** linguist-documentation
+README.md linguist-documentation
+AGENTS.md linguist-documentation
