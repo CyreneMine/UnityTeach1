@@ -15,14 +15,10 @@ public class BeginPanel : BasePanel<BeginPanel>
         {
             SceneManager.LoadScene("GameScene");
         }));
-        btnQuit.onClick.AddListener((() =>
-        {
-            Application.Quit();
-        }));
+        btnQuit.onClick.AddListener((Application.Quit));
         btnRank.onClick.AddListener((() =>
         {
-            //TODO 后续打开排行榜界面
-            
+            RankPanel.Instance.ShowMe();
         }));
         btnSetting.onClick.AddListener((() =>
         {

@@ -15,7 +15,7 @@ public class SettingPanel : BasePanel<SettingPanel>
         btnQuit.onClick.AddListener((() =>
         {
             HideMe();
-            GameDataMgr.Instance.SaveData();
+            PlayerPrefsDataMgr.Instance.SaveData(GameDataMgr.Instance.musicData,"Music");
             BeginPanel.Instance.ShowMe();
         }));
         tgMusic.onValueChanged.AddListener(arg0 => GameDataMgr.Instance.OpenOrCloseMusic(arg0));
