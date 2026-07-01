@@ -16,7 +16,7 @@
 - 当前定位：Begin 场景菜单、设置、排行榜、背景音乐已收尾；明天进入 P81「基础场景搭建」和后续游戏核心内容
 - 下一阶段：开始制作唐老狮入门小项目的游戏核心场景、主界面和玩法对象逻辑
 - 当前项目环境：Unity `6000.3.10f1`，Input System `1.18.0`
-- 最近提交：`study: 完成唐老狮教程 - P80 Begin 场景收尾`
+- 最近提交：`study: 优化 Begin 场景 UI 渲染`
 
 ## 归档索引
 
@@ -35,6 +35,40 @@
 - [文档结构调整记录](Archive/DocsReorganization.md)
 
 ## 最近变更
+
+### 2026-07-01 Begin 场景 UI 摄像机优化
+
+#### 教程/小节名称
+
+唐老狮 Unity 教程 - 实践小项目 Begin 场景阶段优化
+
+#### 本节目标
+
+优化 Begin 场景 UI 渲染结构，让 UI 由独立摄像机渲染，并调整 Canvas 适配参数。
+
+#### 已完成内容
+
+- 新增独立 `UICamera`，用于单独渲染 UI 层。
+- 将 Canvas 从 `Screen Space - Overlay` 调整为 `Screen Space - Camera`。
+- 将 Canvas 的 Render Camera 绑定到 `UICamera`。
+- `UICamera` 使用 UI 层 Culling Mask，Depth 高于 Main Camera，用于在主摄像机之后渲染 UI。
+- 将 CanvasScaler 调整为 `Scale With Screen Size`，参考分辨率为 `800 x 600`。
+- 调整部分 UI RectTransform 参数，使 Begin 场景 UI 在新渲染结构下位置更合适。
+
+#### 做得好的地方
+
+- 从“UI 能显示”进一步推进到“UI 渲染职责更清楚”，开始使用摄像机分层管理 UI。
+- 独立 UI 摄像机让后续处理 UI 层级、特效、相机深度和场景内容分离时更直观。
+- CanvasScaler 的适配模式比固定像素更适合后续不同分辨率测试。
+
+#### 当前问题
+
+- Main Camera 当前仍然可以看到 UI 层；目前 Canvas 已绑定到 UICamera，能正常工作，但如果想让职责更干净，后续可以从 Main Camera 的 Culling Mask 中取消 UI 层。
+- CanvasScaler 当前更偏向宽度适配；如果后续发现不同宽高比下 UI 纵向间距不合适，可以将 Match 调整到更均衡的值。
+
+#### 下一节建议
+
+Begin 场景可以暂时收住，下一步进入 P81「基础场景搭建」，开始制作 GameScene 核心内容。
 
 ### 2026-07-01 实践小项目 P80 Begin 场景收尾
 

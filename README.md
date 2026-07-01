@@ -117,6 +117,7 @@ README.md              项目说明
 - 排行榜排序应先明确业务规则：当前小项目采用分数高优先，分数相同再按用时短优先。
 - 同名玩家重复提交成绩时，当前项目只保留最好成绩；新高分要同时覆盖分数和时间，不能把新分数和旧时间拼成错误记录。
 - Begin 场景背景音乐通过 `BKMusic` 包装 `AudioSource`，并由 `GameDataMgr` 在设置变化时同步音乐开关和音量。
+- Begin 场景 UI 已调整为独立 `UICamera` 渲染，Canvas 使用 Screen Space - Camera，并配合 CanvasScaler 做分辨率适配。
 
 ## 后续计划
 
