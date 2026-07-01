@@ -12,11 +12,11 @@
 
 ## 当前进度
 
-- 当前完成：实践小项目 P79「排行榜数据逻辑」
-- 当前定位：P79 已完成；下一步进入 P80「背景音乐」
-- 下一阶段：继续制作唐老狮入门小项目的背景音乐、游戏主界面和玩法对象逻辑
+- 当前完成：实践小项目 P80「背景音乐」，Begin 场景基础功能基本完成
+- 当前定位：Begin 场景菜单、设置、排行榜、背景音乐已收尾；明天进入 P81「基础场景搭建」和后续游戏核心内容
+- 下一阶段：开始制作唐老狮入门小项目的游戏核心场景、主界面和玩法对象逻辑
 - 当前项目环境：Unity `6000.3.10f1`，Input System `1.18.0`
-- 最近提交：`study: 完成唐老狮教程 - P79 排行榜数据逻辑`
+- 最近提交：`study: 完成唐老狮教程 - P80 Begin 场景收尾`
 
 ## 归档索引
 
@@ -31,9 +31,51 @@
 - [阶段补课 - UGUI、PlayerPrefs 与 Json 持久化](Archive/Pause-UGUI-PlayerPrefs.md)
 - [实践小项目 - P67-P99 分 P 清单](Archive/SmallProject-P67-P99.md)
 - [实践小项目 - P78-P79 排行榜界面与数据逻辑](Archive/SmallProject-P78-P79-Rank.md)
+- [实践小项目 - P75-P80 Begin 场景收尾](Archive/SmallProject-P75-P80-BeginScene.md)
 - [文档结构调整记录](Archive/DocsReorganization.md)
 
 ## 最近变更
+
+### 2026-07-01 实践小项目 P80 Begin 场景收尾
+
+#### 教程/小节名称
+
+唐老狮 Unity 教程 - 实践小项目 P80「背景音乐」与 Begin 场景阶段收尾
+
+#### 本节目标
+
+为 Begin 场景接入背景音乐，并对开始界面、设置界面、排行榜界面和本地数据保存做阶段性收尾，准备明天进入游戏核心内容。
+
+#### 已完成内容
+
+- 新增 `BKMusic` 脚本，用独立脚本包装 Begin 场景的 `AudioSource`。
+- 在 Begin 场景中新增 `BKMusic` 对象，并配置背景音乐循环播放。
+- `BKMusic.Awake()` 中读取 `GameDataMgr.Instance.musicData`，按已保存的音乐开关和音量初始化背景音乐状态。
+- `GameDataMgr.OpenOrCloseMusic()` 中同步更新音乐开关，并实时控制背景音乐静音。
+- `GameDataMgr.ChangeMusicVolume()` 中同步更新音乐音量，并实时控制背景音乐音量。
+- 复查 Begin 场景脚本实例，`BeginPanel`、`SettingPanel`、`RankPanel`、`BKMusic` 当前各 1 个。
+- 复查 Build Settings，`BeginScene` 和 `GameScene` 已在构建场景列表中。
+
+#### 做得好的地方
+
+- 能把 P77 保存的音乐设置真正接到 P80 背景音乐播放上，让设置数据不只是“存起来”，而是能实时影响表现。
+- Begin 场景功能链路已经比较完整：开始游戏、退出游戏、打开设置、保存设置、打开排行榜、读取排行榜、播放背景音乐。
+- 保持了适合当前小项目阶段的简单实现，没有过早引入复杂音频管理框架。
+
+#### 当前问题
+
+- `GameDataMgr` 当前直接调用 `BKMusic.Instance`，在 Begin 场景中可用；后续如果设置面板复用到 GameScene，需要确认 GameScene 中也存在音乐实例，或者给调用处增加空判断/持久化音乐管理器。
+- `BKMusic` 当前没有显式检查 `AudioSource` 是否存在，场景配置正确时没问题；如果以后迁移到 Prefab，需注意组件依赖。
+
+#### 推荐改进方向
+
+- 明天进入 P81 后，优先搭好游戏场景基础结构，再逐步接入游戏主界面、设置复用和玩法对象。
+- 后续如果多个场景都需要背景音乐，可以考虑让音乐对象 `DontDestroyOnLoad`，或抽出更统一的音频管理器；当前阶段先保持简单写法即可。
+- 设置面板在 GameScene 复用前，要重新检查按钮、Toggle、Slider 引用和打开/关闭流程。
+
+#### 下一节建议
+
+进入 P81「基础场景搭建」，开始从 Begin 场景切换到真正的游戏核心内容。
 
 ### 2026-07-01 实践小项目 P78-P79 排行榜界面与数据逻辑
 

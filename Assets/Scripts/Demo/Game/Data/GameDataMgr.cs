@@ -23,6 +23,7 @@ public class GameDataMgr
     public void OpenOrCloseMusic(bool state)
     {
         musicData.isMusic = state;
+        BKMusic.Instance.ChangeOpen(!state);
     }
     public void OpenOrCloseSound(bool state)
     {
@@ -31,6 +32,7 @@ public class GameDataMgr
     public void ChangeMusicVolume(float volume)
     {
         musicData.musicVolume = volume;
+        BKMusic.Instance.ChangeVolume(volume);
     }
     public void ChangeSoundVolume(float volume)
     {
