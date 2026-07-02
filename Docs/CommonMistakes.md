@@ -34,6 +34,12 @@
 
 ## 其他常见问题
 
+- 2026-07-02：实践小项目 P83「设置界面复用」中，从 BeginScene 切换到 GameScene 后关闭设置面板时访问 `BeginPanel.Instance.ShowMe()`，出现 `MissingReferenceException`。
+  - 问题类型：跨场景 UI 复用 / 静态 Instance 残留 / 已销毁 Unity 对象引用。
+  - 现象：直接从 GameScene 运行时，`BeginPanel.Instance` 可能是 `null`；从 BeginScene 进入 GameScene 后，`BeginPanel.Instance` 可能仍指向已经随 BeginScene 销毁的对象，调用 `ShowMe()` 时在 `gameObject.SetActive(true)` 处报错。
+  - 原因：C# 静态字段不会因为切换 Unity 场景自动清空；Unity 对象本体被销毁后，静态变量里仍可能保存一个“已销毁对象”的引用。
+  - 经验总结：可复用 UI 面板不要无条件依赖某个场景专属 Panel。BeginScene 的设置面板关闭后可以回到 BeginPanel；GameScene 的设置面板关闭后应只隐藏自身或回到游戏 UI。通用 `BasePanel<T>` 也可以在 `OnDestroy()` 中清理静态实例，降低跨场景残留风险。
+
 - 2026-07-01：实践小项目 P79「排行榜数据逻辑」中，排行榜成绩覆盖逻辑如果先改分数再用新分数判断是否更新时间，可能把新高分和旧成绩时间拼接成一条错误记录。
   - 问题类型：排行榜业务规则不完整 / 数据字段不属于同一次成绩。
   - 现象：同名玩家旧成绩分数低但时间短，新成绩分数高但时间长时，如果只覆盖分数，再拿旧时间和新时间取较小值，最终可能得到“新高分 + 旧短时间”的组合。

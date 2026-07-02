@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SettingPanel : BasePanel<SettingPanel>
@@ -16,7 +17,10 @@ public class SettingPanel : BasePanel<SettingPanel>
         {
             HideMe();
             PlayerPrefsDataMgr.Instance.SaveData(GameDataMgr.Instance.musicData,"Music");
-            BeginPanel.Instance.ShowMe();
+            if (SceneManager.GetActiveScene().name == "BeginScene")
+            {
+                BeginPanel.Instance.ShowMe();
+            }
         }));
         tgMusic.onValueChanged.AddListener(arg0 => GameDataMgr.Instance.OpenOrCloseMusic(arg0));
         tgSound.onValueChanged.AddListener(arg0 => GameDataMgr.Instance.OpenOrCloseSound(arg0));
@@ -37,6 +41,12 @@ public class SettingPanel : BasePanel<SettingPanel>
     public override void ShowMe()
     {
         base.ShowMe();
+        Time.timeScale = 0;
         UpdatePanel();
+    }
+    public override void HideMe()
+    {
+        base.HideMe();
+        Time.timeScale = 1;
     }
 }

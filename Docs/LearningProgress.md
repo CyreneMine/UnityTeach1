@@ -12,11 +12,11 @@
 
 ## 当前进度
 
-- 当前完成：实践小项目 P80「背景音乐」，Begin 场景基础功能基本完成
-- 当前定位：Begin 场景菜单、设置、排行榜、背景音乐已收尾；明天进入 P81「基础场景搭建」和后续游戏核心内容
-- 下一阶段：开始制作唐老狮入门小项目的游戏核心场景、主界面和玩法对象逻辑
+- 当前完成：实践小项目 P86「玩家基础移动旋转摄像机跟随等」
+- 当前定位：GameScene 已进入核心玩法阶段，完成基础场景、游戏主界面、设置/退出面板复用、坦克基类与玩家基础控制
+- 下一阶段：继续 P87「玩家小地图」，再进入武器、子弹、奖励和敌人逻辑
 - 当前项目环境：Unity `6000.3.10f1`，Input System `1.18.0`
-- 最近提交：`study: 优化 Begin 场景 UI 渲染`
+- 最近提交：`study: 完成唐老狮教程 - P86 玩家基础控制`
 
 ## 归档索引
 
@@ -32,9 +32,45 @@
 - [实践小项目 - P67-P99 分 P 清单](Archive/SmallProject-P67-P99.md)
 - [实践小项目 - P78-P79 排行榜界面与数据逻辑](Archive/SmallProject-P78-P79-Rank.md)
 - [实践小项目 - P75-P80 Begin 场景收尾](Archive/SmallProject-P75-P80-BeginScene.md)
+- [实践小项目 - P81-P86 GameScene 核心基础](Archive/SmallProject-P81-P86-GameSceneCore.md)
 - [文档结构调整记录](Archive/DocsReorganization.md)
 
 ## 最近变更
+
+### 2026-07-02 实践小项目 P81-P86 GameScene 核心基础
+
+#### 教程/小节名称
+
+唐老狮 Unity 教程 - 实践小项目 P81 到 P86
+
+#### 本节目标
+
+从 Begin 场景进入 GameScene，完成基础场景、游戏 UI、设置/退出界面复用、坦克基类和玩家基础控制。
+
+#### 已完成内容
+
+- 完成 GameScene 基础搭建和游戏主界面。
+- 完成设置面板在 GameScene 中的复用，并排查跨场景复用时的 `BeginPanel.Instance` 销毁引用问题。
+- 完成退出界面 `QuitPanel`，打开时暂停游戏，关闭时恢复时间流速。
+- 新增坦克基类 `TankBaseObj`，整理攻击、防御、血量、移动速度、旋转速度、死亡特效等基础字段。
+- 新增玩家对象 `PlayerObj`，完成玩家移动、车体旋转和炮塔朝向控制。
+- P86 中完成两套输入方式对照：旧版 `Input.GetAxis` 写法和新版 `Unity Input System` 写法。
+
+#### 做得好的地方
+
+- 没有只机械照搬教程旧输入方案，而是同时实现并对照新版 `Input System`。
+- 能把 Begin 场景 UI 经验迁移到 GameScene，并及时发现跨场景 UI 复用带来的静态引用问题。
+- `TankBaseObj` 把坦克公共属性和受伤/死亡逻辑抽出来，为后续玩家、敌人、武器和奖励逻辑做了铺垫。
+
+#### 当前问题
+
+- `SettingPanel` 已通过场景名判断避免在 GameScene 中继续显示 `BeginPanel`，但后续更推荐让 BeginScene 和 GameScene 的关闭行为彻底分离。
+- `PlayerObj.OnDisable()` 里访问 `playerAction` 时，如果对象在 `Start()` 前被禁用，可能需要补空判断。
+- 新旧输入方案目前以对照学习为主，实际运行时要避免两套控制逻辑同时驱动同一个玩家对象。
+
+#### 下一节建议
+
+进入 P87「玩家小地图」，继续完善玩家相关表现；随后进入武器、子弹、奖励和敌人逻辑。
 
 ### 2026-07-01 Begin 场景 UI 摄像机优化
 
