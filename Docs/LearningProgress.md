@@ -12,11 +12,11 @@
 
 ## 当前进度
 
-- 当前完成：实践小项目 P86「玩家基础移动旋转摄像机跟随等」
-- 当前定位：GameScene 已进入核心玩法阶段，完成基础场景、游戏主界面、设置/退出面板复用、坦克基类与玩家基础控制
-- 下一阶段：继续 P87「玩家小地图」，再进入武器、子弹、奖励和敌人逻辑
+- 当前完成：实践小项目 P91「可击毁箱子」
+- 当前定位：GameScene 已完成玩家基础控制、小地图、武器/子弹、武器奖励、属性奖励和可击毁箱子
+- 下一阶段：明天继续 P92「固定不动的敌人」到 P99「实践总结」，目标是一口气完成小 Demo
 - 当前项目环境：Unity `6000.3.10f1`，Input System `1.18.0`
-- 最近提交：`study: 完成唐老狮教程 - P86 玩家基础控制`
+- 最近提交：`study: 完成唐老狮教程 - P91 可击毁箱子`
 
 ## 归档索引
 
@@ -33,9 +33,48 @@
 - [实践小项目 - P78-P79 排行榜界面与数据逻辑](Archive/SmallProject-P78-P79-Rank.md)
 - [实践小项目 - P75-P80 Begin 场景收尾](Archive/SmallProject-P75-P80-BeginScene.md)
 - [实践小项目 - P81-P86 GameScene 核心基础](Archive/SmallProject-P81-P86-GameSceneCore.md)
+- [实践小项目 - P87-P91 武器奖励与可击毁箱子](Archive/SmallProject-P87-P91-WeaponsRewardsBreakableWall.md)
 - [文档结构调整记录](Archive/DocsReorganization.md)
 
 ## 最近变更
+
+### 2026-07-02 实践小项目 P87-P91 武器奖励与可击毁箱子
+
+#### 教程/小节名称
+
+唐老狮 Unity 教程 - 实践小项目 P87 到 P91
+
+#### 本节目标
+
+在 GameScene 中继续补齐玩家表现和核心互动：小地图、武器/子弹、奖励拾取、属性变化和可击毁箱子。
+
+#### 已完成内容
+
+- P87：使用 `RenderTexture` + 小地图摄像机 + UGUI `RawImage` 实现小地图，没有照搬教程 GUI 方案。
+- P88：新增 `WeaponObj` 和 `BulletObj`，完成武器发射点、子弹生成、子弹移动、命中墙体播放特效和音效。
+- P89：新增武器奖励对象，玩家拾取后可随机更换武器，并播放拾取特效。
+- P90：新增属性奖励对象，支持攻击、防御、生命值、最大生命值等奖励类型。
+- P91：新增可击毁箱子/墙体逻辑，命中后播放销毁效果，并按概率掉落奖励。
+- 新增 `AutoDestroy`，用于特效对象自动销毁，避免临时特效长期留在场景中。
+- 在 `TagManager` 中补充 `UnbreakableWall`、`BreakableWall`，用于区分不可击毁和可击毁墙体。
+
+#### 做得好的地方
+
+- 能根据当前 UGUI 项目选择更合适的小地图实现，不被教程旧 GUI 写法绑住。
+- 武器、子弹、奖励、可击毁箱子开始拆成独立脚本，职责比把所有逻辑写在玩家脚本里更清楚。
+- 遇到奖励触发器被非玩家对象触发导致空引用后，能用 `CompareTag("Player")` 过滤触发对象。
+- 音效播放继续接入 `GameDataMgr.Instance.musicData.soundVolume/isSound`，和前面设置数据保持一致。
+
+#### 当前问题
+
+- `BreakableWallObj` 当前没有显式判断进入 Trigger 的对象是否为子弹；如果后续被玩家、奖励、特效等对象误触发，需要加 `Bullet` Tag 或 `BulletObj` 组件判断。
+- `WeaponReward` 和 `PropReward` 已用 `Player` Tag 过滤，但要确保玩家对象确实设置了 `Player` Tag。
+- `WeaponObj.Fire()` 依赖 `bulletPrefab`、`bulletSpawn`、子弹 `AudioSource` 和 `BulletObj` 都配置正确，后续排错时要优先查 Inspector。
+- `PlayerObj.OnDisable()` 访问 `playerAction` 的空判断问题仍可在后续收尾时一起修。
+
+#### 下一节建议
+
+明天进入 P92「固定不动的敌人」，随后继续移动敌人、怪物血条、通关点、通关/失败界面、打包和实践总结，目标是一口气收完小 Demo。
 
 ### 2026-07-02 实践小项目 P81-P86 GameScene 核心基础
 

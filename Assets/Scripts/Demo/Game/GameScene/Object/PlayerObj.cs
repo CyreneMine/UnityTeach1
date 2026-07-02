@@ -7,24 +7,31 @@ public class PlayerObj:TankBaseObj
     private Vector2 moveInput;
     private Vector2 lookInput;
     private PlayerController playerAction;
-
+    public Transform weaponMount;
     private void OnDisable()
     {
         playerAction.Player.Move.performed -= OnMove;
         playerAction.Player.Move.canceled -= OnMove;
         playerAction.Player.Look.performed -= OnLook;
         playerAction.Player.Look.canceled -= OnLook;
+        playerAction.Player.Fire.performed -= OnFire;
+        // playerAction.Player.Fire.canceled -= OnFire;
         playerAction.Disable();
     }
 
     private void Start()
     {
+        GamePanel.Instance.UpdateHp(maxHp);
+        nowHp = maxHp;
         playerAction = new PlayerController();
         playerAction.Enable();
         playerAction.Player.Move.performed += OnMove;
         playerAction.Player.Move.canceled += OnMove;
         playerAction.Player.Look.performed += OnLook;
         playerAction.Player.Look.canceled += OnLook;
+        playerAction.Player.Fire.performed += OnFire;
+        // playerAction.Player.Fire.canceled += OnFire;
+        
     }
     
     private void Update()
@@ -40,9 +47,28 @@ public class PlayerObj:TankBaseObj
             transform.Translate(new Vector3(0,0,moveInput.y)* (Time.deltaTime * moveSpeed));
             transform.Rotate(new Vector3(0,moveInput.x,0)* (Time.deltaTime * roundSpeed));
             head.transform.Rotate(new Vector3(0,lookInput.x,0));
+            
+                
         }
     }
 
+    public void ChangeWeapon(GameObject giveWeapon)
+    {
+        if (weapon !=null)
+        {
+            Destroy(weapon.gameObject);
+            weapon = null;
+        }
+
+        GameObject weaponObj = Instantiate(giveWeapon, weaponMount, false);
+        weapon = weaponObj.GetComponent<WeaponObj>();
+        
+    }
+    private void OnFire(InputAction.CallbackContext ctx)
+    {
+        if (weapon != null && ctx.ReadValueAsButton())
+            weapon.Fire();
+    }
     private void OnMove(InputAction.CallbackContext ctx)
     {
         moveInput = ctx.ReadValue<Vector2>();

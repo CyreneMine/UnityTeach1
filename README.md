@@ -18,7 +18,7 @@
 
 最近几节主要是理论内容：物体位移方式、音频导入参数、`AudioSource` / `AudioListener` 组件、`AudioSource` API、麦克风录制与 `AudioClip.GetData()`。
 
-当前项目已经从“阶段暂停补课”切回“制作唐老狮入门小项目”。实践小项目视频范围已记录为 `P67-P99`，目前已完成到 `P86 / 玩家基础移动旋转摄像机跟随等`，GameScene 已进入核心玩法阶段。下一步进入 `P87 / 玩家小地图`，随后继续武器、子弹、奖励和敌人逻辑。旧式 `OnGUI` 只作为了解内容，后续项目优先使用 UGUI。
+当前项目已经从“阶段暂停补课”切回“制作唐老狮入门小项目”。实践小项目视频范围已记录为 `P67-P99`，目前已完成到 `P91 / 可击毁箱子`，GameScene 已具备玩家移动、开火、小地图、武器奖励、属性奖励和可击毁箱子等核心互动。下一步进入 `P92 / 固定不动的敌人`，计划继续完成敌人、血条、通关/失败界面、打包和实践总结。旧式 `OnGUI` 只作为了解内容，后续项目优先使用 UGUI。
 
 当前项目环境：
 
@@ -57,7 +57,7 @@
 - PlayerPrefs 简单本地数据保存
 - UGUI 基础界面制作
 - Json 持久化结构化本地数据保存
-- 实践小项目 P67-P86：小项目准备内容、开始界面、设置界面、音效数据逻辑、排行榜界面、排行榜数据逻辑、背景音乐、GameScene 基础场景、游戏主界面、设置/退出面板复用、坦克基类、玩家基础移动旋转和摄像机跟随
+- 实践小项目 P67-P91：小项目准备内容、开始界面、设置界面、音效数据逻辑、排行榜界面、排行榜数据逻辑、背景音乐、GameScene 基础场景、游戏主界面、设置/退出面板复用、坦克基类、玩家基础移动旋转、摄像机跟随、小地图、武器/子弹、武器奖励、属性奖励和可击毁箱子
 - Git 仓库初始化和 GitHub 推送
 - Unity 专用 `.gitignore`
 - 项目级助手规则 `AGENTS.md`
@@ -69,6 +69,7 @@
 ```text
 Assets/
   Prefabs/             Prefab 练习资源
+  ArtRes/RenderTextures/ 小地图 RenderTexture 等渲染资源
   Scenes/              Unity 场景
   Scripts/             唐老狮教程分节脚本和练习场景
   PlayerController.*   Input System 输入配置和生成代码
@@ -120,6 +121,8 @@ README.md              项目说明
 - Begin 场景 UI 已调整为独立 `UICamera` 渲染，Canvas 使用 Screen Space - Camera，并配合 CanvasScaler 做分辨率适配。
 - GameScene 设置面板复用时要避免继续依赖 `BeginPanel`；跨场景静态 `Instance` 可能留下已销毁对象引用。
 - P86 玩家控制同时保留旧版 `Input` 和新版 `Unity Input System` 对照，新项目更推荐把正式输入流程逐步迁移到 Input System。
+- 小地图使用 `RenderTexture` + 小地图摄像机 + UGUI `RawImage`，比教程旧 GUI 写法更适合当前项目。
+- 武器、子弹、奖励和可击毁箱子已拆成独立脚本；Trigger 逻辑需要用 Tag/组件判断过滤触发对象。
 
 ## 后续计划
 
@@ -134,7 +137,7 @@ README.md              项目说明
 - 后续学习 Rigidbody 运动时，对照理解 Transform 直接移动和 Rigidbody 物理移动的区别。
 - PlayerPrefs、UGUI、Json 持久化前置内容已完成。
 - 接下来继续制作唐老狮入门教程小项目。
-- 当前小项目视频定位：P86 已完成；下一步 P87「玩家小地图」。
+- 当前小项目视频定位：P91 已完成；下一步 P92「固定不动的敌人」，明天目标完成到 P99「实践总结」。
 - 优先用 UGUI 做菜单、设置面板、游戏界面和结算界面。
 - 使用 PlayerPrefs 保存音量、简单设置等轻量数据。
 - 使用 Json 保存结构化游戏数据或更完整的本地存档。

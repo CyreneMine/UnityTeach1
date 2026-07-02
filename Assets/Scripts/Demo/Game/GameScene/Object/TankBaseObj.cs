@@ -11,6 +11,7 @@ public abstract class TankBaseObj :MonoBehaviour
     public float headRoundSpeed = 100;
     public GameObject deadEffect;
     public Transform head;
+    public WeaponObj weapon;
     public abstract void Fire();
 
     public virtual void Wound(TankBaseObj other)

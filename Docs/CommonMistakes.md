@@ -32,6 +32,12 @@
   - 排查方法：确认 `Bullet` Prefab 带 `Rigidbody` 和 `SphereCollider(Is Trigger)`；确认地面 Tag 为 `Ground`，敌人 Tag 为 `Enemy`，子弹 Tag 为 `Bullet`；确认 `ProjectSettings/TagManager.asset` 已提交。
   - 经验总结：碰撞代码看起来正确但不触发时，优先检查 Inspector 配置，而不是只盯脚本。
 
+- 2026-07-02：实践小项目 P88-P91 中，子弹、奖励和可击毁箱子的 Trigger 逻辑容易被“非预期对象”触发。
+  - 问题类型：Trigger 触发对象未过滤 / Tag 与组件判断遗漏。
+  - 现象：击破箱子或墙体后，奖励对象刚生成就可能被子弹、箱子、特效或其他 Collider 触发，导致 `GetComponent<PlayerObj>()` 返回 `null` 并报空引用。
+  - 排查方法：查看报错行是否在 `WeaponReward.OnTriggerEnter` 或 `PropReward.OnTriggerEnter`；打印 `other.name` / `other.tag`；确认玩家 Tag 是否为 `Player`，奖励脚本是否先判断 `other.CompareTag("Player")`。
+  - 经验总结：`OnTriggerEnter` 不等于“只会被自己想要的对象触发”。奖励只响应玩家，箱子只响应子弹，子弹只响应该处理的目标，这些限制要在代码或 Layer Collision Matrix 中明确写出来。
+
 ## 其他常见问题
 
 - 2026-07-02：实践小项目 P83「设置界面复用」中，从 BeginScene 切换到 GameScene 后关闭设置面板时访问 `BeginPanel.Instance.ShowMe()`，出现 `MissingReferenceException`。

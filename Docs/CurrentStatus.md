@@ -2,9 +2,9 @@
 
 ## 当前学习状态
 
-- 当前完成：实践小项目 P86「玩家基础移动旋转摄像机跟随等」
-- 当前定位：GameScene 已进入核心玩法阶段，完成基础场景、游戏主界面、设置/退出面板复用、坦克基类与玩家基础控制
-- 下一阶段：继续 P87「玩家小地图」，再进入武器、子弹、奖励和敌人逻辑
+- 当前完成：实践小项目 P91「可击毁箱子」
+- 当前定位：GameScene 已完成玩家基础控制、小地图、武器/子弹、武器奖励、属性奖励和可击毁箱子；明天进入敌人、血条、通关/失败与打包收尾
+- 下一阶段：继续 P92「固定不动的敌人」到 P99「实践总结」，目标是一口气完成小 Demo
 - 学习来源：唐老狮 Unity 教程练习
 - Unity 版本：`6000.3.10f1`
 - Input System：`1.18.0`
@@ -32,6 +32,9 @@
 - Begin 场景收尾：开始游戏、退出游戏、设置面板、排行榜面板、音乐设置、排行榜数据保存等基础菜单功能已经串起来；并补充了独立 UI 摄像机渲染方案。
 - P81-P86：完成 GameScene 基础搭建、游戏主界面、设置界面复用、退出界面、坦克基类和玩家基础移动/旋转/摄像机跟随等内容。
 - P86 输入实践：在玩家控制中同时完成旧版 `Input` 写法和新版 `Unity Input System` 写法的对照，新版方案使用 `PlayerController` 输入配置读取 Move / Look。
+- P87-P91：完成 UGUI 小地图方案、武器和子弹对象、武器奖励对象、属性奖励对象、可击毁箱子/墙体和掉落奖励逻辑。
+- P87 小地图：没有照搬教程 GUI 写法，而是使用 `RenderTexture` + 小地图摄像机 + UGUI `RawImage` 实现，更符合当前 Unity 项目习惯。
+- P88-P91 玩法推进：玩家可以开火，子弹命中不可击毁/可击毁墙体后播放效果并销毁；可击毁箱子/墙体有概率掉落武器或属性奖励。
 
 ## 当前重点概念
 
@@ -60,6 +63,8 @@
 - Begin 场景 UI 渲染优化：Canvas 从 Overlay 改为 Screen Space - Camera，并绑定独立 `UICamera`；`UICamera` 只渲染 UI 层，Depth 高于 Main Camera，CanvasScaler 改为 Scale With Screen Size，后续更适合分辨率适配和摄像机分层。
 - P83 设置面板复用中确认：跨场景复用 UI 面板时，不能让通用面板继续依赖 BeginScene 专属对象；静态 `Instance` 可能在切场景后留下已销毁对象引用，引发 `MissingReferenceException`。
 - P86 玩家控制中确认：旧版 `Input.GetAxis` 适合快速理解连续输入；新版 `Input System` 更适合把输入配置资产化，并通过 `performed/canceled` 回调维护当前输入向量。
+- P87 中确认：当前项目使用 UGUI 时，小地图可以优先采用 `RenderTexture` 方案；正交小地图摄像机挂在玩家上方能快速得到玩家居中的小地图效果。
+- P88-P91 中确认：Trigger 逻辑必须结合 Tag/组件判断限制触发对象；奖励物只应该响应玩家，子弹和墙体/箱子的触发检测要确保 Collider、Rigidbody、Is Trigger 和 Tag 配置一致。
 
 ## 当前常见风险
 
@@ -75,12 +80,15 @@
 - 独立 UI 摄像机方案下，要持续确认 Main Camera 和 UICamera 的 Culling Mask、Depth、Clear Flags，以及 Canvas 的 Render Camera 是否仍然正确绑定。
 - `SettingPanel` 复用到 GameScene 时，要避免关闭按钮继续调用 `BeginPanel.Instance.ShowMe()`；GameScene 中应只隐藏设置面板或回到游戏 UI。
 - `PlayerObj.OnDisable()` 当前会访问 `playerAction`，如果对象在 `Start()` 前被禁用，可能需要补空判断；后续调试玩家对象生命周期时优先检查这一点。
+- 奖励触发器如果不判断玩家，可能被子弹、箱子、特效或其他 Collider 触发，导致 `GetComponent<PlayerObj>()` 为空。
+- `BreakableWallObj` 当前会在任何 Trigger 进入时执行破坏逻辑；后续如果出现非子弹触发破坏，需要加 `BulletObj` 或 `Bullet` Tag 判断。
+- 武器、子弹、特效 Prefab 依赖 Inspector 引用，继续注意 `bulletPrefab`、`bulletSpawn`、`effect`、`rewards`、`weapons` 是否漏绑。
 - 文档收尾时遗漏 README 或 CurrentStatus。
 
 ## 当前学习路线调整
 
 - PlayerPrefs、UGUI、Json 持久化前置内容已完成。
-- 本项目已进入实践小项目制作阶段，目前完成到 P86，GameScene 核心玩法对象已经开始实现。
+- 本项目已进入实践小项目制作阶段，目前完成到 P91，GameScene 已具备玩家移动、开火、奖励拾取和可击毁箱子等核心互动。
 - 后续继续完成唐老狮入门教程项目，并优先使用 UGUI 代替旧式 `OnGUI`。
 - `OnGUI` 只需要能看懂教程写法和历史用途，不作为后续项目主力 UI 方案。
 
@@ -134,4 +142,4 @@
 
 ## 最近提交
 
-- `study: 完成唐老狮教程 - P86 玩家基础控制`
+- `study: 完成唐老狮教程 - P91 可击毁箱子`
